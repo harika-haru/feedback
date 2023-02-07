@@ -1,38 +1,20 @@
-const ratingEls = document.querySelectorAll(".rating");
-const btnE1 = document.getElementById("btn");
-
-const containerE1 = document.getElementById("container");
-
-let selectedRating = "";
-
-ratingEls.forEach((ratingEl)=>{
-    ratingEl.addEventListener("click",(event) =>{
-        removeActive();
-        selectedRating = 
-         event.target.innerText || event.target.
-         parentNode.innerText;
-        event.target.classList.add("active")
-        event.target.parentNode.classList.add("active")
-        
-
-    });
-});
-
-btnE1.addEventListener("click", ()=>{
-    if(selectedRating !== ""){
-        containerE1.innerHTML = `
-        <strong>Thank you!</strong>
-        <br>
-        <br>
-        <strong>Feedback: ${selectedRating}</strong>
-        <p> We'll use your feedback to improve our customer support.</p>
-        `;
-
+//Todo: Make M+ M- and MC functional
+let string = "";
+let buttons = document.querySelectorAll('.button');
+Array.from(buttons).forEach((button)=>{
+  button.addEventListener('click', (e)=>{
+    if(e.target.innerHTML == '='){
+      string = eval(string);
+      document.querySelector('input').value = string;
     }
-    
+    else if(e.target.innerHTML == 'C'){
+      string = ""
+      document.querySelector('input').value = string;
+    }
+    else{ 
+    console.log(e.target)
+    string = string + e.target.innerHTML;
+    document.querySelector('input').value = string;
+      }
+  })
 })
-function removeActive() {
-    ratingEls.forEach((ratingEl)=>{
-        ratingEl.classList.remove("active");
-    })
-}
